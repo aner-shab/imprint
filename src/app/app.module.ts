@@ -10,6 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ExplorePage } from '../pages/explore/explore';
+import { CurrentUserService } from '../providers/user/current-user.service';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ExplorePage } from '../pages/explore/explore';
   providers: [
     StatusBar,
     SplashScreen,
+    CurrentUserService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
