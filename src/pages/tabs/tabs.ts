@@ -9,9 +9,9 @@ import { ExplorePage } from '../explore/explore';
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ExplorePage;
+  mapRoot = ExplorePage;
+  profileRoot = HomePage;
+  aboutRoot = AboutPage;
 
   constructor() {
 
