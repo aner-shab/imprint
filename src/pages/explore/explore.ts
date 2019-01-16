@@ -10,7 +10,9 @@ import { MapCoordinates } from '../../providers/models/location';
 })
 export class ExplorePage {
   
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
     private locationService: LocationService) {
   }
 
@@ -29,19 +31,13 @@ export class ExplorePage {
   ngOnInit(){
     this.options = {
       layers: [
-        tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 })
+        tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+        maxNativeZoom: 18,  
+        maxZoom: 20 })
       ],
       zoom: 5,
       center: latLng(this.defaultPos.latitude, this.defaultPos.longitude),
-      attributionControl: false
-    };
-
-    this.layersControl = {
-      attribution: false,
-      baseLayers: {
-        'Open Street Map': tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }),
-        'Open Cycle Map': tileLayer('http://{s}.tile.opencyclemap.org/{z}/{x}/{y}.png', { maxZoom: 18 })
-      }
+      attributionControl: false      
     };
 
     this.layers = [];
@@ -52,12 +48,13 @@ export class ExplorePage {
          iconUrl: 'assets/imgs/marker-icon.png'
       })
     });
-    this.layers.push(this.userLocationLayer);
-    
+    this.layers.push(this.userLocationLayer);    
   }
   
   onMapReady(map: Map) {
     this.map = map;    
+    this.map.zoomControl.remove();
+    this.map.setZoom(18);
     // this.map.addControl(
     //     control.attribution({
     //         prefix: ''
@@ -69,7 +66,6 @@ export class ExplorePage {
         longitude: pos.longitude
       };
       this.map.panTo(latLng(pos.latitude,pos.longitude));
-      this.map.setZoom(18);
       this.userLocationLayer.setLatLng(latLng(pos.latitude,pos.longitude));
     })
   }

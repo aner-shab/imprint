@@ -1,0 +1,10 @@
+* Login page / create user 
+
+* sync user with db
+
+* map bearing/rotation
+
+* random powerups? (snippets from around the world?)
+
+* dark theme
+

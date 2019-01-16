@@ -1,9 +1,10 @@
 <ion-content  no-padding>
-    <div style="height: 100%;"
+    <div
+    style="height: 100%;"
     leaflet   
     (leafletMapReady)="onMapReady($event);"
     [leafletOptions]="options"    
     [leafletLayers]="layers"
-    [leafletLayersControl]="layersControl">
+    >
     </div>  
 </ion-content>
