@@ -12,6 +12,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ExplorePage } from '../pages/explore/explore';
 import { CurrentUserService } from '../providers/user/current-user.service';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { LocationService } from '../providers/location/location.service';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     StatusBar,
     SplashScreen,
     CurrentUserService,
+    LocationService,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

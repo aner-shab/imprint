@@ -1,5 +1,7 @@
 {
   "name": "imprint",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

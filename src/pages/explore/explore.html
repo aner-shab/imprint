@@ -1,13 +1,9 @@
-<ion-content padding>
-
-    <div style="height: 300px;"
-    leaflet 
-    [leafletOptions]="options"
+<ion-content  no-padding>
+    <div style="height: 100%;"
+    leaflet   
+    (leafletMapReady)="onMapReady($event);"
+    [leafletOptions]="options"    
+    [leafletLayers]="layers"
     [leafletLayersControl]="layersControl">
-</div>  
-
-
-
-
-
+    </div>  
 </ion-content>
