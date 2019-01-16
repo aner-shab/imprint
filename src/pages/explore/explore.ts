@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { latLng, tileLayer, Map, marker, icon, Marker } from 'leaflet';
 import { LocationService } from '../../providers/location/location.service';
 import { MapCoordinates } from '../../providers/models/location';
+import { debouncer } from '../../providers/decorators/debouncer';
 
 @Component({
   selector: 'page-explore',
@@ -48,26 +49,25 @@ export class ExplorePage {
          iconUrl: 'assets/imgs/marker-icon.png'
       })
     });
-    this.layers.push(this.userLocationLayer);    
+    this.layers.push(this.userLocationLayer);
+    window.addEventListener("orientationchange", this.handleOrientation, true);
   }
   
   onMapReady(map: Map) {
     this.map = map;    
     this.map.zoomControl.remove();
     this.map.setZoom(18);
-    // this.map.addControl(
-    //     control.attribution({
-    //         prefix: ''
-    //     })
-    // );
     this.locationService.currentLocation.subscribe((pos: MapCoordinates)=>{
-      this.userLocation = {
+      const newLocation = {
         latitude: pos.latitude,
         longitude: pos.longitude
       };
-      this.map.panTo(latLng(pos.latitude,pos.longitude));
-      this.userLocationLayer.setLatLng(latLng(pos.latitude,pos.longitude));
-    })
+      if (newLocation != this.userLocation){
+        this.userLocation = newLocation;
+        this.map.panTo(latLng(pos.latitude,pos.longitude));
+        this.userLocationLayer.setLatLng(latLng(pos.latitude,pos.longitude));      
+      }
+    });
   }
 
   ionViewWillLeave() {
@@ -75,6 +75,10 @@ export class ExplorePage {
   }
   ionViewDidEnter(){
     this.locationService.start();
+  }
+  
+  handleOrientation(evt: DeviceOrientationEvent){
+    console.log(evt);
   }
   
 
