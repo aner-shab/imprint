@@ -11,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ExplorePage } from '../pages/explore/explore';
 import { CurrentUserService } from '../providers/user/current-user.service';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CurrentUserService } from '../providers/user/current-user.service';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    LeafletModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
