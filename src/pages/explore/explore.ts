@@ -83,15 +83,11 @@ export class ExplorePage {
     });
 
     if ('ondeviceorientationabsolute' in window) {
-      // We can listen for the new deviceorientationabsolute event.
       addEventListener("deviceorientationabsolute", function(e) {
         this.handleOrientation(e);
       }.bind(this), false);
     } 
     else if ('ondeviceorientation' in window) {
-      // We can still listen for deviceorientation events.
-      // The `absolute` property of the event tells us whether
-      // or not the degrees are absolute.
       addEventListener("deviceorientation", function(e) {
         this.handleOrientation(e);
       }.bind(this), false);
@@ -101,7 +97,7 @@ export class ExplorePage {
 
   // @HostListener('deviceorientation',['$event'])
   @debouncer(50)
-  handleOrientation(evt: DeviceOrientationEvent){  
+  private handleOrientation(evt: DeviceOrientationEvent){  
     console.log(evt.alpha);
     if (this.userLocationLayer){      
       let heading = null;
@@ -113,5 +109,11 @@ export class ExplorePage {
     else console.log("Nope");
   }
   
+
+  onFocusClicked(){
+    this.map.panTo(latLng(this.userLocation.latitude,this.userLocation.longitude));
+    this.map.setZoom(18);
+  }
+
 
 }
