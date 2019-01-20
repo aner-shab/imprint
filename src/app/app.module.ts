@@ -15,7 +15,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LocationService } from '../providers/location/location.service';
 import { Geolocation } from '@ionic-native/geolocation';
 import { CommonModule } from '@angular/common';
-import { ImprintModalComponent } from '../pages/explore/components/imprint-modal.component';
+import { ImprintModalComponent } from '../pages/explore/imprint-modal/imprint-modal.component';
 
 @NgModule({
   declarations: [

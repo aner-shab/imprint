@@ -93,7 +93,7 @@ export class ExplorePage {
           this.userMarker.setLatLng(latLng(pos.latitude,pos.longitude));
         }
         else{
-          if (!this.cooldown){
+          if (!this.cooldown && getDistanceinKm(this.userLocation,newLocation) < 1){
             this.cooldown = true;
             let startLocation = this.userLocation;
             this.userLocation = newLocation;
@@ -140,7 +140,7 @@ export class ExplorePage {
       i++;
       setTimeout(()=>{
         this.move(positions,i);
-      },50);
+      },20);
     }
     else{      
       this.cooldown = false;
@@ -167,10 +167,11 @@ export class ExplorePage {
 
   onImprintClicked(imprint: ImprintObject){
     // console.log(imprint);
-    this.selectedImprint = imprint;
+    // this.selectedImprint = imprint;
     
-    let t = getDistanceinKm(this.userLocation, imprint.coordinates)
-    console.log(t);
+    if (getDistanceinKm(this.userLocation, imprint.coordinates) < 1){
+      this.selectedImprint = imprint;
+    }
   }
 
   onOverlayClicked(){
