@@ -3,8 +3,7 @@ import { ImprintObject } from "../../../providers/models/imprint";
 
 @Component({
     selector: 'imprint-modal',
-    templateUrl: 'imprint-modal.component.html',
-	// styleUrls: ['imprint-modal.component.scss']
+    templateUrl: 'imprint-modal.component.html'
   })
   export class ImprintModalComponent {
     

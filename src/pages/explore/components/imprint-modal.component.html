@@ -5,10 +5,15 @@
     <div class="imprint-img">
         [image here]        
     </div>
-    <div class="imprint-author">
-        Left by {{imprint.author.name}}
-    </div>
-    <div class="imprint-score">
-        {{imprint.content.score}}
+
+    <div class="imprint-author-info">
+        <div class="imprint-author">
+            Left by {{imprint.author.name}}
+        </div>
+        <div class="imprint-score">
+            <button color="secondary" small  ion-button class="imprint-score-button"><ion-icon name="remove"></ion-icon></button>
+            <span class="imprint-score-text">{{imprint.content.score}}</span>
+            <button color="secondary" small  ion-button class="imprint-score-button"><ion-icon name="add"></ion-icon></button>
+        </div>
     </div>
 </div>

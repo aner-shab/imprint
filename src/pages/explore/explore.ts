@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { latLng, tileLayer, Map, icon, Marker, MapOptions, Layer, LayerGroup } from 'leaflet';
 import { LocationService } from '../../providers/location/location.service';
 import { MapCoordinates } from '../../providers/models/location';
-import { compassHeading } from '../../providers/location/compass.helper';
+import { compassHeading, getDistanceinKm } from '../../providers/location/geo.helper';
 import { debouncer } from '../../providers/decorators/debouncer';
 import 'leaflet-rotatedmarker';
 import { ImprintObject } from '../../providers/models/imprint';
@@ -149,7 +149,7 @@ export class ExplorePage {
 
   @debouncer(10)
   private handleOrientation(evt: DeviceOrientationEvent){  
-    console.log(evt.alpha);
+    // console.log(evt.alpha);
     if (this.userMarker){      
       let heading = null;
       if(evt.alpha !== null) {
@@ -166,8 +166,11 @@ export class ExplorePage {
 
 
   onImprintClicked(imprint: ImprintObject){
-    console.log(imprint);
+    // console.log(imprint);
     this.selectedImprint = imprint;
+    
+    let t = getDistanceinKm(this.userLocation, imprint.coordinates)
+    console.log(t);
   }
 
   onOverlayClicked(){

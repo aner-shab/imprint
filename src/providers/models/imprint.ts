@@ -40,7 +40,8 @@ export class ImprintObject{
         iconUrl: this.icon}));    
     }
 
-    checkIfImprintSeenBefore(){ 
+    checkIfImprintSeenBefore(){
+        // todo query server or make the query in db?
         this.seenBefore = false;
     }
 
