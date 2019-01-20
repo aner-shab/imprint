@@ -12,4 +12,13 @@
         <button color="secondary" (click)="onFocusClicked()" ion-fab mini><ion-icon name="locate"></ion-icon></button>
     </ion-fab>
     </div>  
+
+
 </ion-content>
+
+<div *ngIf="selectedImprint">
+    <div class="overlay" (click)="onOverlayClicked()"></div>
+    <imprint-modal 
+    [imprint]="selectedImprint">
+    </imprint-modal>
+</div>

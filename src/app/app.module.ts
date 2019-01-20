@@ -14,6 +14,8 @@ import { CurrentUserService } from '../providers/user/current-user.service';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LocationService } from '../providers/location/location.service';
 import { Geolocation } from '@ionic-native/geolocation';
+import { CommonModule } from '@angular/common';
+import { ImprintModalComponent } from '../pages/explore/components/imprint-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,11 @@ import { Geolocation } from '@ionic-native/geolocation';
     AboutPage,
     ExplorePage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ImprintModalComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     LeafletModule.forRoot()
@@ -34,7 +38,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     AboutPage,
     ExplorePage,
     HomePage,
-    TabsPage
+    TabsPage,
   ],
   providers: [
     StatusBar,
