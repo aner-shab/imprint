@@ -50,9 +50,6 @@ export class ExplorePage {
 
     this.userMarker = new Marker([ this.defaultPos.latitude, this.defaultPos.longitude ]);
     this.userMarker.setIcon(icon({
-          //  shadowSize: [ 20, 20 ],
-          //  shadowAnchor: [ 10, 10 ],
-          //  shadowUrl: 'assets/imgs/marker-icon.png',
            iconSize: [30, 30],
            iconAnchor: [15, 15],
            iconUrl: 'assets/imgs/marker-icon.png',           
@@ -67,12 +64,12 @@ export class ExplorePage {
   }
   ionViewWillLeave() {
     this.locationService.stop();
-    if ('ondeviceorientationabsolute' in window) {
-      removeEventListener("deviceorientationabsolute", this.handleOrientation);
-    }
-    else{
+    // if ('ondeviceorientationabsolute' in window) {
+    //   removeEventListener("deviceorientationabsolute", this.handleOrientation);
+    // }
+    // else{
       removeEventListener("deviceorientation", this.handleOrientation);
-    }
+    // }
   }
 
   initialized = false;
@@ -105,12 +102,13 @@ export class ExplorePage {
       
     });
 
-    if ('ondeviceorientationabsolute' in window) {
-      addEventListener("deviceorientationabsolute", function(e: DeviceOrientationEvent) {
-        this.handleOrientation(e);
-      }.bind(this), false);
-    } 
-    else if ('ondeviceorientation' in window) {
+    // if ('ondeviceorientationabsolute' in window) {
+    //   addEventListener("deviceorientationabsolute", function(e: DeviceOrientationEvent) {
+    //     this.handleOrientation(e);
+    //   }.bind(this), false);
+    // } 
+    // else 
+    if ('ondeviceorientation' in window) {
       addEventListener("deviceorientation", function(e: DeviceOrientationEvent) {
         this.handleOrientation(e);
       }.bind(this), false);
@@ -139,7 +137,7 @@ export class ExplorePage {
       this.map.panTo(latLng(positions[i].latitude,positions[i].longitude));      
       i++;
       setTimeout(()=>{
-        this.move(positions,i);
+        this.move(positions, i);
       },20);
     }
     else{      
@@ -169,9 +167,9 @@ export class ExplorePage {
     // console.log(imprint);
     // this.selectedImprint = imprint;
     
-    if (getDistanceinKm(this.userLocation, imprint.coordinates) < 1){
+    // if (getDistanceinKm(this.userLocation, imprint.coordinates) < 1){ //todo restoer
       this.selectedImprint = imprint;
-    }
+    // }
   }
 
   onOverlayClicked(){
@@ -184,17 +182,16 @@ export class ExplorePage {
       coordinates: { latitude: 10, longitude: 10},
       author: { id: 100, name: "grinch", score: 666, picture: "default.png" },
       content: { message: "Hello!", imageUrl: "defaultcontent.png", score: 100, votedBefore: false },
-
-    }]
+    }];
 
     let imprintsLayer = [];
     let imprintsData = [];
-    for (let marker of jsonData){
+    jsonData.forEach(marker=>{
       const imprint = new ImprintObject(marker);
       imprintsData.push(imprint);
       imprint.marker.on('click',()=> this.zone.run(()=>this.onImprintClicked(imprint)));
       imprintsLayer.push(imprint.marker);
-    } 
+    });
     this.layers.push(new LayerGroup(imprintsLayer));
   }
 }

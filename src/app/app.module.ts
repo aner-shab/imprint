@@ -1,7 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
+import { AppComponent } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
 import { HomePage } from '../pages/home/home';
@@ -19,7 +19,7 @@ import { ImprintModalComponent } from '../pages/explore/imprint-modal/imprint-mo
 
 @NgModule({
   declarations: [
-    MyApp,
+    AppComponent,
     AboutPage,
     ExplorePage,
     HomePage,
@@ -29,12 +29,12 @@ import { ImprintModalComponent } from '../pages/explore/imprint-modal/imprint-mo
   imports: [
     CommonModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(AppComponent),
     LeafletModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    AppComponent,
     AboutPage,
     ExplorePage,
     HomePage,
